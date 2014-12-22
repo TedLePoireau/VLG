@@ -23,8 +23,8 @@ int heuristic(int node)
 
 LLIST* fringe(graph* g, int start, int end)
 {
-	time_t begin = time(NULL);
-	printf("FRINGE : START (TIME %d)", begin);
+	clock_t begin_t = clock();
+	printf("FRINGE : START (TIME %lf)\n", (double)begin_t/CLOCKS_PER_SEC);
 	/* Error check */
 	if (start < 0)
 		report_error("Start node must be positive");
@@ -95,17 +95,18 @@ LLIST* fringe(graph* g, int start, int end)
 		}
 
 	}
-	time_t end = time(NULL);
-	printf("FRINGE : END (TIME : %d)\n", end);
-	printf("FRINGE : Algorithm lasted %d", end - begin);
+	clock_t end_t = clock();
+	printf("FRINGE : END (TIME %lf)\n", (double)end_t/CLOCKS_PER_SEC);
+	printf("FRINGE : Algorithm lasted %lf second(s)\n", (double)(end_t - begin_t)/CLOCKS_PER_SEC);
 
 	path = llist_add(path, end);
-    i = end;
-    while (i != start)
-    {
+    	i = end;
+    	while (i != start)
+    	{
                 path = llist_add(path, pred[i]);
                 i = pred[i];
-    }
+    	}
+	printf("Path found : ");
 	llist_print(path);
 
 	return path;
