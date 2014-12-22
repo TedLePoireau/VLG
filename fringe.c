@@ -6,6 +6,8 @@
  */
 
 #include "utils.h"
+#include "prelim.h"
+#include "diam.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
@@ -15,7 +17,7 @@
 /* Our heuristic is based on the degree of the node */
 int heuristic(int node)
 {
-
+	return 4;
 }
 
 LLIST* fringe(graph* g, int start, int end)
@@ -30,13 +32,16 @@ LLIST* fringe(graph* g, int start, int end)
 	if (end > g->n)
 		report_error("End node bigger than number of node in Graph");	
 
+	int node, deg, score = 0, i;
+	char found = 0;
+	int thresold = 100;
 	//min known cost for a node
-	int* costs = (int*) malloc(sizeof (int) * g->n);
+	int* cost = (int*) malloc(sizeof (int) * g->n);
 	//precedence list
 	int* pred = (int*) malloc(sizeof (int) * g->n);
 	for (i = 0; i < g->n;  i++)
 	{
-		costs[i] = INT_MAX;
+		cost[i] = INT_MAX;
 		pred[i] = -1;
 	}
 
@@ -46,9 +51,8 @@ LLIST* fringe(graph* g, int start, int end)
 	queue* now = empty_queue(QUEUE_SIZE);
 	queue* later = empty_queue(QUEUE_SIZE);
 	
-	int node, deg, score = 0, i;
 	queue_add(now, start);
-	costs[start] = 0;
+	cost[start] = 0;
 
 	while (	!is_empty_queue(now)
 		&& !is_empty_queue(later)
@@ -59,12 +63,13 @@ LLIST* fringe(graph* g, int start, int end)
 			free_queue(now);
 			now = later;
 			later = empty_queue(QUEUE_SIZE);
+			thresold += 100;
 		}
 
 		node = queue_get(now);
-		deg = g->degree[node];
+		deg = g->degrees[node];
 
-		for (int i = 0; i < deg; i++)
+		for (i = 0; i < deg; i++)
 		{
 			int son = g->links[node][i];
 			
