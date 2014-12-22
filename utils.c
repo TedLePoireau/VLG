@@ -25,7 +25,7 @@ LLIST* llist_reverse(LLIST* list)
 		l1 = l2;
 		l2 = next;
 	}
-return l1;
+	return l1;
 }
 
 void llist_print(LLIST* list)
