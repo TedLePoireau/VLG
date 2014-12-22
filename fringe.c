@@ -63,7 +63,7 @@ LLIST* fringe(graph* g, int start, int end)
 		{
 			free_queue(now);
 			now = later;
-			later = empty_queue(QUEUE_SIZE);ŝ
+			later = empty_queue(QUEUE_SIZE);
 			thresold += 100;
 		}
 
@@ -84,11 +84,11 @@ LLIST* fringe(graph* g, int start, int end)
 			{
 				cost[son] = score;
 				pred[son] = node;
+				if (score > thresold)
+					queue_add(later, son);
+				else
+					queue_add(now, son);
 			}
-			if (score > thresold)
-				queue_add(later, son);
-			else
-				queue_add(now, son);
 
 		}
 
@@ -96,13 +96,13 @@ LLIST* fringe(graph* g, int start, int end)
 	printf("FRINGE : END\n");
 
 	path = llist_add(path, end);
-        i = end;
-        while (i != start)
-        {
-		printf("PATH : %d\n", i);
+    i = end;
+    while (i != start)
+    {
                 path = llist_add(path, pred[i]);
                 i = pred[i];
-        }
+    }
+	llist_print(path);
 
-ç	return path;
+	return path;
 }
