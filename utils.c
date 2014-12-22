@@ -10,15 +10,20 @@ LLIST* llist_add(LLIST* list, int n)
 	return add;
 }
 
-LLIST* llist_pop(LLIST* list, int* n)
+LLIST* llist_reverse(LLIST* list)
 {
-	if (list == NULL)
-	{
-		*n = -1;
-		return NULL;
+	LLIST* l1 = list;
+	LLIST* l2 = list->next;
+	LLOST* next;
+	
+	
+	// Si ca marche je suis trop fort.
+	while (l2 != null)
+	{	
+		next = l2->next;
+		l2->next = l1;
+		l1 = l2;
+		l2 = next;
 	}
-	*n = list->n;
-	LLIST* ret = list->next;
-	free(list);
-	return ret;
+	return l1;
 }

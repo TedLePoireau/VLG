@@ -10,6 +10,7 @@ struct linked_list {
 typedef struct linked_list LLIST;
 
 LLIST* llist_add(LLIST* list, int n);
+LLIST* llist_reverse(LLIST* list);
 
 #endif
 
