@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <time.h>
 
 #define QUEUE_SIZE 2000000
 
@@ -22,7 +23,8 @@ int heuristic(int node)
 
 LLIST* fringe(graph* g, int start, int end)
 {
-	printf("FRINGE : START\n");
+	time_t begin = time(NULL);
+	printf("FRINGE : START (TIME %d)", begin);
 	/* Error check */
 	if (start < 0)
 		report_error("Start node must be positive");
@@ -93,7 +95,9 @@ LLIST* fringe(graph* g, int start, int end)
 		}
 
 	}
-	printf("FRINGE : END\n");
+	time_t end = time(NULL);
+	printf("FRINGE : END (TIME : %d)\n", end);
+	printf("FRINGE : Algorithm lasted %d", end - begin);
 
 	path = llist_add(path, end);
     i = end;

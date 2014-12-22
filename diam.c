@@ -327,8 +327,8 @@ int main(int argc, char **argv){
   
   fprintf(stderr,"Preprocessing the graph...\n");
   fprintf(stderr," reading...\n");
-  FILE* f = fopen("/home/iggy/vlg/VLG/graphs/inet", "r");
-  g = graph_from_file(f);
+  //FILE* f = fopen("/home/iggy/vlg/VLG/graphs/inet", "r");
+  g = graph_from_file(stdin);
   printf("%d\n", time(NULL));
   fringe(g, 0, 30);
   printf("%d\n", time(NULL));
