@@ -1,6 +1,6 @@
-/* 
- * Fringe Search 
- * by Nicolas DURAN & Rodolphe GUITTENY 
+/*
+ * Fringe Search
+ * by Nicolas DURAN & Rodolphe GUITTENY
  * Project VLG
  * EPITA
  */
@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define QUEUE_SIZE 10000
+#define QUEUE_SIZE 2000000
 
 /* Our heuristic is based on the degree of the node */
 int heuristic(int node)
@@ -22,15 +22,16 @@ int heuristic(int node)
 
 LLIST* fringe(graph* g, int start, int end)
 {
+	printf("FRINGE : START\n");
 	/* Error check */
 	if (start < 0)
-		report_error("Start node must be positive");	
-        if (end < 0)	
-		report_error("End node must be positive");	
+		report_error("Start node must be positive");
+        if (end < 0)
+		report_error("End node must be positive");
 	if (start > g->n)
-		report_error("Start node bigger than number of node in Graph");	
+		report_error("Start node bigger than number of node in Graph");
 	if (end > g->n)
-		report_error("End node bigger than number of node in Graph");	
+		report_error("End node bigger than number of node in Graph");
 
 	int node, deg, score = 0, i;
 	char found = 0;
@@ -45,24 +46,24 @@ LLIST* fringe(graph* g, int start, int end)
 		pred[i] = -1;
 	}
 
-	LLIST* path;
-	
+	LLIST* path = NULL;
+
 	//Fringe queues
 	queue* now = empty_queue(QUEUE_SIZE);
 	queue* later = empty_queue(QUEUE_SIZE);
-	
+
 	queue_add(now, start);
 	cost[start] = 0;
 
-	while (	!is_empty_queue(now)
-		&& !is_empty_queue(later)
+	while (	(!is_empty_queue(now)
+		|| !is_empty_queue(later))
 		&& !found)
 	{
 		if (is_empty_queue(now))
 		{
 			free_queue(now);
 			now = later;
-			later = empty_queue(QUEUE_SIZE);
+			later = empty_queue(QUEUE_SIZE);ŝ
 			thresold += 100;
 		}
 
@@ -72,11 +73,11 @@ LLIST* fringe(graph* g, int start, int end)
 		for (i = 0; i < deg; i++)
 		{
 			int son = g->links[node][i];
-			
+
 			if (son == end)
 			{
 				pred[end] = node;
-				found = 1;	
+				found = 1;
 			}
 			score = cost[node] + heuristic(son);
 			if (score < cost[son])
@@ -85,11 +86,23 @@ LLIST* fringe(graph* g, int start, int end)
 				pred[son] = node;
 			}
 			if (score > thresold)
-				queue_add(later, node);
+				queue_add(later, son);
 			else
-				queue_add(now, node);
-			
+				queue_add(now, son);
+
 		}
-		
+
 	}
+	printf("FRINGE : END\n");
+
+	path = llist_add(path, end);
+        i = end;
+        while (i != start)
+        {
+		printf("PATH : %d\n", i);
+                path = llist_add(path, pred[i]);
+                i = pred[i];
+        }
+
+ç	return path;
 }
