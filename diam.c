@@ -10,15 +10,8 @@
 #include <time.h>
 
 #include "prelim.h"
-
+#include "diam.h"
 /******** QUEUE functions - begin *********/
-
-typedef struct queue{
-  int size;
-  int *elts;
-  int begin;
-  int end;
-} queue;
 
 queue *empty_queue(int size){
   queue *q;
