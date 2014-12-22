@@ -5,11 +5,13 @@ SCIA 2015 - EPITA
 Project tested with gcc 4.8.3 20140911 (Red Hat 4.8.3-7)
 
 No external libraries were used.
+All the code, but the one from the teacher, has been done by ourselves.
 
 Please feel free to contact duran_n@epita.fr
 if you have any questions regarding this project
 
 TODO:
+Memory management
 Improve fringe search
 Design a better heuristic
 Optimize fringe search to be cache friendly
