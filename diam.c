@@ -329,8 +329,9 @@ int main(int argc, char **argv){
   fprintf(stderr," reading...\n");
   FILE* f = fopen("/home/iggy/vlg/VLG/graphs/inet", "r");
   g = graph_from_file(f);
-
-  fringe(g, 0, 3);
+  printf("%d\n", time(NULL));
+  fringe(g, 0, 30);
+  printf("%d\n", time(NULL));
 
   fprintf(stderr," random renumbering...\n");
   random_renumbering(g);
