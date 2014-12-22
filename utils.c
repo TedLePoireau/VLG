@@ -27,3 +27,14 @@ LLIST* llist_reverse(LLIST* list)
 	}
 return l1;
 }
+
+void llist_print(LLIST* list)
+{
+	printf("{ ");
+	while (list != NULL)
+	{
+		printf("%d ", list->n);
+		list = list->next;
+	}
+	printf("}\n");
+}

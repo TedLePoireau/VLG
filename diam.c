@@ -11,6 +11,8 @@
 
 #include "prelim.h"
 #include "diam.h"
+#include "fringe.h"
+
 /******** QUEUE functions - begin *********/
 
 queue *empty_queue(int size){
@@ -325,7 +327,11 @@ int main(int argc, char **argv){
   
   fprintf(stderr,"Preprocessing the graph...\n");
   fprintf(stderr," reading...\n");
-  g = graph_from_file(stdin);
+  FILE* f = fopen("/home/iggy/vlg/VLG/graphs/inet", "r");
+  g = graph_from_file(f);
+
+  fringe(g, 0, 3);
+
   fprintf(stderr," random renumbering...\n");
   random_renumbering(g);
   fprintf(stderr," %d nodes, %d links.\n",g->n,g->m);

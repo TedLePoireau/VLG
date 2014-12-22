@@ -43,4 +43,6 @@ int *sort_nodes_by_degrees(graph *g);
 void renumbering(graph *g, int *perm);
 void random_renumbering(graph *g);
 
+int max(int i, int j);
+
 #endif
