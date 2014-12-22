@@ -1,0 +1,15 @@
+Very Large Graph
+by Nicolas DURAN & Rodolphe Guitteny
+SCIA 2015 - EPITA
+
+Project tested with gcc 4.8.3 20140911 (Red Hat 4.8.3-7)
+
+No external libraries were used.
+
+Please feel free to contact duran_n@epita.fr
+if you have any questions regarding this project
+
+TODO:
+Improve fringe search
+Design a better heuristic
+Optimize fringe search to be cache friendly
