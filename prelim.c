@@ -4,6 +4,7 @@
 /* http://www-rp.lip6.fr/~magnien/Diameter */
 /* clemence.magnien@lip6.fr */
 
+#include "prelim.h"
 
 #define MAX_LINE_LENGTH 1000
 

@@ -9,7 +9,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "prelim.c"
+#include "prelim.h"
 
 /******** QUEUE functions - begin *********/
 
